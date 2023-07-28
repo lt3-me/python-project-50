@@ -13,3 +13,8 @@ This project was built using these tools:
 | [Py.Test](https://pytest.org)                                               | "A mature full-featured Python testing tool"            |
 | [flake8](https://flake8.pycqa.org/)                                         | "Your tool for style guide enforcement" |
 
+# python-package
+
+### Description
+
+Compares two configuration files and shows a difference.
