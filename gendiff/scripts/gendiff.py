@@ -1,4 +1,5 @@
 import argparse
+from gendiff import generate_diff
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     if args.format == 'plain':
         print('format is plain')
     elif args.format == 'json':
-        print('format is json')
+        diff = generate_diff(args.first_file, args.second_file)
+        print(diff)
     else:
         print('invalid format')
