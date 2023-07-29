@@ -8,7 +8,8 @@ def generate_diff(file_path1, file_path2):
     keys_set1 = set(file1.keys())
     keys_set2 = set(file2.keys())
     combined_keys_set = sorted(keys_set1.union(keys_set2))
-    diff = ''.join(map(compare_by_key, combined_keys_set))
+    diff = ''.join(map(lambda key: compare_by_key(file1, file2, key),
+                       combined_keys_set))
     return '{\n' + diff + '}'
 
 
