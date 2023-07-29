@@ -16,11 +16,11 @@ def compare_by_key(dict1, dict2, key):
     entry1 = dict1.get(key, KeyError)
     entry2 = dict2.get(key, KeyError)
     if entry1 is KeyError:
-        return (f'    + {key}: {entry2}\n')
+        return (f'  + {key}: {entry2}\n')
     if entry2 is KeyError:
-        return (f'    - {key}: {entry1}\n')
+        return (f'  - {key}: {entry1}\n')
 
     if entry1 == entry2:
-        return (f'      {key}: {entry1}\n')
+        return (f'    {key}: {entry1}\n')
     else:
-        return (f'    - {key}: {entry1}\n    + {key}: {entry2}\n')
+        return (f'  - {key}: {entry1}\n  + {key}: {entry2}\n')
