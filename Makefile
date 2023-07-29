@@ -15,4 +15,4 @@ check:
 	make test
 
 test-coverage:
-	poetry run python3 -m pytest --cov=gendiff
+	poetry run python3 -m pytest --cov=gendiff --cov-report=xml
