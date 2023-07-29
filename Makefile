@@ -5,6 +5,6 @@ install:
 	poetry install
 
 check:
-
+	make lint
 
 test-coverage:
