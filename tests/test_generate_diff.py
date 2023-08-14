@@ -6,22 +6,16 @@ file2 = path.join(path.dirname(__file__), 'fixtures', 'file2.json')
 
 
 def test_diff():
-    assert generate_diff(file1, file2) == '''\
-{
-  - follow: False
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: True
-}'''
+    diff_result_file = path.join(path.dirname(__file__), 'fixtures',
+                                 'test_diff_result.txt')
+    with open(diff_result_file, "r") as f:
+        result = f.read()
+    assert generate_diff(file1, file2) == result
 
 
 def test_diff_same():
-    assert generate_diff(file1, file1) == '''\
-{
-    follow: False
-    host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
-}'''
+    diff_same_result_file = path.join(path.dirname(__file__), 'fixtures',
+                                      'test_same_result.txt')
+    with open(diff_same_result_file, "r") as f:
+        result = f.read()
+    assert generate_diff(file1, file1) == result
