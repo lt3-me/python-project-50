@@ -20,6 +20,10 @@ This project was built using these tools:
 
 Compares two configuration files and shows a difference.
 
-### Example for json format
+### Example for json files
 
 [![asciicast](https://asciinema.org/a/WnIICxx3wHLlNNsSwcySyMS6D.svg)](https://asciinema.org/a/WnIICxx3wHLlNNsSwcySyMS6D)
+
+### Example for yaml files
+
+[![asciicast](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6.svg)](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6)
