@@ -1,10 +1,10 @@
 from gendiff import generate_diff
 from os import path
 
-file1 = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
-file2 = path.join(path.dirname(__file__), 'fixtures', 'file2.json')
-file1p = path.join(path.dirname(__file__), 'fixtures', 'file1.yaml')
-file2p = path.join(path.dirname(__file__), 'fixtures', 'file2.yml')
+file1j = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
+file2j = path.join(path.dirname(__file__), 'fixtures', 'file2.json')
+file1y = path.join(path.dirname(__file__), 'fixtures', 'file1.yaml')
+file2y = path.join(path.dirname(__file__), 'fixtures', 'file2.yml')
 
 
 def test_diff_json():
@@ -12,7 +12,7 @@ def test_diff_json():
                                  'test_diff_result.txt')
     with open(diff_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1, file2) == result
+    assert generate_diff(file1j, file2j) == result
 
 
 def test_diff_json_same():
@@ -20,7 +20,7 @@ def test_diff_json_same():
                                       'test_same_result.txt')
     with open(diff_same_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1, file1) == result
+    assert generate_diff(file1j, file1j) == result
 
 
 def test_diff_yaml():
@@ -28,7 +28,7 @@ def test_diff_yaml():
                                  'test_diff_result.txt')
     with open(diff_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1p, file2p) == result
+    assert generate_diff(file1y, file2y) == result
 
 
 def test_diff_yaml_same():
@@ -36,4 +36,4 @@ def test_diff_yaml_same():
                                       'test_same_result.txt')
     with open(diff_same_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1p, file1p) == result
+    assert generate_diff(file1y, file1y) == result
