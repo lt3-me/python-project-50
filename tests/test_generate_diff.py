@@ -20,7 +20,7 @@ def test_diff_json_same():
                                       'test_same_result.txt')
     with open(diff_same_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1p, file1p) == result
+    assert generate_diff(file1, file1) == result
 
 
 def test_diff_yaml():
@@ -29,3 +29,11 @@ def test_diff_yaml():
     with open(diff_result_file, "r") as f:
         result = f.read()
     assert generate_diff(file1p, file2p) == result
+
+
+def test_diff_yaml_same():
+    diff_same_result_file = path.join(path.dirname(__file__), 'fixtures',
+                                      'test_same_result.txt')
+    with open(diff_same_result_file, "r") as f:
+        result = f.read()
+    assert generate_diff(file1p, file1p) == result
