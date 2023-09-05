@@ -62,5 +62,4 @@ def format(dict1, dict2, diff):
         return output
 
     output = '{\n' + _format(dict1, dict2, diff, INDENTATION) + '}'
-    print(output)
     return output
