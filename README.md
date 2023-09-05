@@ -27,3 +27,6 @@ Compares two configuration files and shows a difference.
 ### Example for yaml files
 
 [![asciicast](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6.svg)](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6)
+
+### Using a default formatter (stylish)
+[![asciicast](https://asciinema.org/a/NHjQ2mV4IvbyMWCIKmOzUDx19.svg)](https://asciinema.org/a/NHjQ2mV4IvbyMWCIKmOzUDx19)
