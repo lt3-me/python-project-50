@@ -14,8 +14,6 @@ diff_same_result_file_stylish = path.join(path.dirname(__file__), 'fixtures',
                                           'test_same_result_stylish.txt')
 diff_result_file_plain = path.join(path.dirname(__file__), 'fixtures',
                                    'test_diff_result_plain.txt')
-diff_same_result_file_plain = path.join(path.dirname(__file__), 'fixtures',
-                                        'test_same_result_plain.txt')
 
 with open(diff_result_file_stylish, "r") as f:
     result_s = f.read()
@@ -23,8 +21,6 @@ with open(diff_result_file_plain, "r") as f:
     result_p = f.read()
 with open(diff_same_result_file_stylish, "r") as f:
     result_same_s = f.read()
-with open(diff_same_result_file_plain, "r") as f:
-    result_same_p = f.read()
 
 
 def test_diff_json_stylish():
@@ -40,7 +36,7 @@ def test_diff_json_same_stylish():
 
 
 def test_diff_json_same_plain():
-    assert generate_diff(file1j, file1j, plain.format) == result_same_p
+    assert generate_diff(file1j, file1j, plain.format) == ''
 
 
 def test_diff_yaml_stylish():
@@ -56,4 +52,4 @@ def test_diff_yaml_same_stylish():
 
 
 def test_diff_yaml_same_plain():
-    assert generate_diff(file1y, file1y, plain.format) == result_same_p
+    assert generate_diff(file1y, file1y, plain.format) == ''
