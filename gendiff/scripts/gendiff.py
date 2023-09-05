@@ -19,4 +19,5 @@ def main():
         diff = generate_diff(args.first_file, args.second_file, stylish.format)
         print(diff)
     else:
-        print('invalid format')
+        diff = generate_diff(args.first_file, args.second_file, stylish.format)
+        print(diff)
