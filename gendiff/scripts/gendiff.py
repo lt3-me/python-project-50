@@ -15,9 +15,8 @@ def main():
     args = parser.parse_args()
     if args.format == 'plain':
         print('format is plain')
-    elif args.format == 'stylish':
+    elif args.format == 'stylish' or args.format == '':
         diff = generate_diff(args.first_file, args.second_file, stylish.format)
         print(diff)
     else:
-        diff = generate_diff(args.first_file, args.second_file, stylish.format)
-        print(diff)
+        print('invalid format')
