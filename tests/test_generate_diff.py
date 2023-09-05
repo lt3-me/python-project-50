@@ -1,4 +1,5 @@
 from gendiff import generate_diff
+import gendiff.formats.stylish as stylish
 from os import path
 
 file1j = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
@@ -12,7 +13,7 @@ def test_diff_json():
                                  'test_diff_result.txt')
     with open(diff_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1j, file2j) == result
+    assert generate_diff(file1j, file2j, stylish.format) == result
 
 
 def test_diff_json_same():
@@ -20,7 +21,7 @@ def test_diff_json_same():
                                       'test_same_result.txt')
     with open(diff_same_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1j, file1j) == result
+    assert generate_diff(file1j, file1j, stylish.format) == result
 
 
 def test_diff_yaml():
@@ -28,7 +29,7 @@ def test_diff_yaml():
                                  'test_diff_result.txt')
     with open(diff_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1y, file2y) == result
+    assert generate_diff(file1y, file2y, stylish.format) == result
 
 
 def test_diff_yaml_same():
@@ -36,4 +37,4 @@ def test_diff_yaml_same():
                                       'test_same_result.txt')
     with open(diff_same_result_file, "r") as f:
         result = f.read()
-    assert generate_diff(file1y, file1y) == result
+    assert generate_diff(file1y, file1y, stylish.format) == result
