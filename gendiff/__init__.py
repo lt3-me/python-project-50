@@ -1,7 +1,8 @@
 from gendiff.parsing import parse_file
+import gendiff.formats.stylish as stylish
 
 
-def generate_diff(file_path1, file_path2, format_func):
+def generate_diff(file_path1, file_path2, format_func=stylish.format):
     file1 = parse_file(file_path1)
     file2 = parse_file(file_path2)
 
