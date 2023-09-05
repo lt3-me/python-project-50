@@ -24,11 +24,6 @@ def generate_diff(file_path1, file_path2, format_func=stylish.format):
 
     return format_func(file1, file2, diff)
 
-    # combined_keys_set = sorted(keys_set1.union(keys_set2))
-    # diff = ''.join(map(lambda key: compare_by_key(file1, file2, key),
-    #                    combined_keys_set))
-    # return '{\n' + diff + '}'
-
 
 def compare_by_key(dict1, dict2, key):
     entry1 = dict1.get(key, KeyError)
