@@ -22,7 +22,7 @@ Property '{path}{key}' was added with value: {value}\n"
                 case 'removed':
                     output += f"\
 Property '{path}{key}' was removed\n"
-                case 'replaced':
+                case 'updated':
                     value = format_value(dict1[key])
                     value_new = format_value(dict2[key])
                     output += \

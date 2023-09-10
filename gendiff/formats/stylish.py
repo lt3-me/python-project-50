@@ -47,7 +47,7 @@ def format(dict1, dict2, diff):
                     output += format_key_value(key, dict1[key], '-', indent)
                 case 'unchanged':
                     output += format_key_value(key, dict1[key], ' ', indent)
-                case 'replaced':
+                case 'updated':
                     output += format_key_value(key, dict1[key], '-', indent)
                     output += format_key_value(key, dict2[key], '+', indent)
                 case _:

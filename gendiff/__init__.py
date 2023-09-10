@@ -13,7 +13,7 @@ def generate_diff(file_path1, file_path2, format_func=stylish.format):
         combined_keys_set = sorted(keys_set1.union(keys_set2))
         for key in combined_keys_set:
             comp_result = compare_by_key(file1, file2, key)
-            if comp_result == 'replaced':
+            if comp_result == 'updated':
                 if isinstance(file1[key], dict) and \
                      isinstance(file2[key], dict):
                     comp_result = gendiff(file1[key], file2[key])
@@ -35,4 +35,4 @@ def compare_by_key(dict1, dict2, key):
     if entry1 == entry2:
         return ('unchanged')
     else:
-        return ('replaced')
+        return ('updated')
