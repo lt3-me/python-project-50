@@ -5,3 +5,5 @@ dist/
 coverage.xml
 file1.json
 file2.json
+file1.yaml
+file2.yml
