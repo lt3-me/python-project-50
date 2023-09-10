@@ -22,11 +22,11 @@ Compares two configuration files and shows a difference.
 
 ### Example for json files
 
-<script async id="asciicast-f3HNKOu6MIBMaSFoJVIDdQHvy" src="https://asciinema.org/a/f3HNKOu6MIBMaSFoJVIDdQHvy.js"></script>
+[![asciicast](https://asciinema.org/a/f3HNKOu6MIBMaSFoJVIDdQHvy.svg)](https://asciinema.org/a/f3HNKOu6MIBMaSFoJVIDdQHvy)
 
 ### Example for yaml files
 
-[![asciicast](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6.svg)](https://asciinema.org/a/E01s0BXIToBAXsXGaMBAmHTe6)
+[![asciicast](https://asciinema.org/a/DC1KXHQqMxhjBVbruO7cZ4ZxZ.svg)](https://asciinema.org/a/DC1KXHQqMxhjBVbruO7cZ4ZxZ)
 
 ### Using stylish formatter (default)
 
@@ -37,3 +37,5 @@ Compares two configuration files and shows a difference.
 [![asciicast](https://asciinema.org/a/f16fwTbKiohK7vBHKlodNg9za.svg)](https://asciinema.org/a/f16fwTbKiohK7vBHKlodNg9za)
 
 ### Using json formatter
+
+[![asciicast](https://asciinema.org/a/F60bg7AXeuMDQpwCAxWXNzBD5.svg)](https://asciinema.org/a/F60bg7AXeuMDQpwCAxWXNzBD5)
