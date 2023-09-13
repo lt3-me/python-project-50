@@ -24,7 +24,9 @@ Compares two configuration files and shows a difference.
 
 *$ gendiff (-f format_name) first_file second_file*
 
-**Available output formats**: stylish, plain, json *(default: stylish, when format (-f) unspecified)*
+**Available output formats**: stylish, plain, json 
+
+(default: stylish, when format (-f) unspecified)
 
 **Available file formats**: .json, .yaml (.yml)
 
