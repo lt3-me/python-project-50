@@ -20,11 +20,13 @@ This project was built using these tools:
 
 Compares two configuration files and shows a difference.
 
-Usage:
-$ gendiff (-f format_name) first_file second_file
+**Usage**:
 
-Available output formats: stylish, plain, json
-Available file formats: .json, .yaml (.yml)
+*$ gendiff (-f format_name) first_file second_file*
+
+**Available output formats**: stylish, plain, json
+
+**Available file formats**: .json, .yaml (.yml)
 
 ### Example for json files
 
