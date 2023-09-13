@@ -7,35 +7,34 @@ def format_value(value):
     return value
 
 
-def format(dict1, dict2, diff):
+def format(diff):
 
-    def _format(dict1, dict2, diff, path):
+    def _format(diff, path):
         output = ''
         for key in diff:
-            match diff[key]:
-                case 'unchanged':
-                    pass
-                case 'added':
-                    value = format_value(dict2[key])
-                    output += f"\
+            if diff[key].get('children') is None:
+                match diff[key].get('status'):
+                    case 'unchanged':
+                        pass
+                    case 'added':
+                        value = format_value(diff[key].get('value'))
+                        output += f"\
 Property '{path}{key}' was added with value: {value}\n"
-                case 'removed':
-                    output += f"\
+                    case 'removed':
+                        output += f"\
 Property '{path}{key}' was removed\n"
-                case 'updated':
-                    value = format_value(dict1[key])
-                    value_new = format_value(dict2[key])
-                    output += \
-                        f"\
-Property '{path}{key}' was updated. From {value} to {value_new}\n"
-                case _:
-                    if isinstance(diff[key], dict):
+                    case 'updated':
+                        value = format_value(diff[key].get('old_value'))
+                        value_new = format_value(diff[key].get('value'))
                         output += \
-                            _format(dict1[key], dict2[key],
-                                    diff[key], f'{path}{key}.')
-                    else:
+                            f"\
+Property '{path}{key}' was updated. From {value} to {value_new}\n"
+                    case _:
                         raise Exception('Diff formatting error')
+            else:
+                output += _format(diff[key].get('children'), f'{path}{key}.')
+
         return output
 
-    output = _format(dict1, dict2, diff, '').strip()
+    output = _format(diff, '').strip()
     return output

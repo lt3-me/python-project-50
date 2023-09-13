@@ -35,31 +35,37 @@ def format_key_value(key, value, prefix, indent):
         return format_single(key, value, prefix, indent)
 
 
-def format(dict1, dict2, diff):
+def format(diff):
 
-    def _format(dict1, dict2, diff, indent):
+    def _format(diff, indent):
         output = ''
         for key in diff:
-            match diff[key]:
-                case 'added':
-                    output += format_key_value(key, dict2[key], '+', indent)
-                case 'removed':
-                    output += format_key_value(key, dict1[key], '-', indent)
-                case 'unchanged':
-                    output += format_key_value(key, dict1[key], ' ', indent)
-                case 'updated':
-                    output += format_key_value(key, dict1[key], '-', indent)
-                    output += format_key_value(key, dict2[key], '+', indent)
-                case _:
-                    if isinstance(diff[key], dict):
-                        output += (f"{' ' * indent}  {key}: {{\n")
-                        output += \
-                            _format(dict1[key], dict2[key],
-                                    diff[key], indent + NEXT_LAYER_INDENT)
-                        output += (f"{' ' * indent}  }}\n")
-                    else:
+            if diff[key].get('children') is None:
+                match diff[key].get('status'):
+                    case 'added':
+                        output += format_key_value(key, diff[key].get('value'),
+                                                   '+', indent)
+                    case 'removed':
+                        output += format_key_value(key, diff[key].get('value'),
+                                                   '-', indent)
+                    case 'unchanged':
+                        output += format_key_value(key, diff[key].get('value'),
+                                                   ' ', indent)
+                    case 'updated':
+                        output += format_key_value(key,
+                                                   diff[key].get('old_value'),
+                                                   '-', indent)
+                        output += format_key_value(key, diff[key].get('value'),
+                                                   '+', indent)
+                    case _:
                         raise Exception('Diff formatting error')
+            else:
+                output += (f"{' ' * indent}  {key}: {{\n")
+                output += \
+                    _format(diff[key].get('children'),
+                            indent + NEXT_LAYER_INDENT)
+                output += (f"{' ' * indent}  }}\n")
         return output
 
-    output = '{\n' + _format(dict1, dict2, diff, INDENTATION) + '}'
+    output = '{\n' + _format(diff, INDENTATION) + '}'
     return output
