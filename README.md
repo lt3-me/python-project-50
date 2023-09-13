@@ -20,6 +20,12 @@ This project was built using these tools:
 
 Compares two configuration files and shows a difference.
 
+Usage:
+$ gendiff (-f format_name) first_file second_file
+
+Available output formats: stylish, plain, json
+Available file formats: .json, .yaml (.yml)
+
 ### Example for json files
 
 [![asciicast](https://asciinema.org/a/f3HNKOu6MIBMaSFoJVIDdQHvy.svg)](https://asciinema.org/a/f3HNKOu6MIBMaSFoJVIDdQHvy)
