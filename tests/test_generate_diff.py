@@ -1,7 +1,4 @@
 from gendiff import generate_diff
-import gendiff.formats.stylish as stylish
-import gendiff.formats.plain as plain
-import gendiff.formats.json as json_formatter
 from os import path
 
 file1j = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
@@ -33,48 +30,48 @@ with open(diff_same_result_file_json, "r") as f:
 
 
 def test_diff_json_stylish():
-    assert generate_diff(file1j, file2j, stylish.format) == result_s
+    assert generate_diff(file1j, file2j, 'stylish') == result_s
 
 
 def test_diff_json_plain():
-    assert generate_diff(file1j, file2j, plain.format) == result_p
+    assert generate_diff(file1j, file2j, 'plain') == result_p
 
 
 def test_diff_json_json():
-    assert generate_diff(file1j, file2j, json_formatter.format) == result_j
+    assert generate_diff(file1j, file2j, 'json') == result_j
 
 
 def test_diff_json_same_stylish():
-    assert generate_diff(file1j, file1j, stylish.format) == result_same_s
+    assert generate_diff(file1j, file1j, 'stylish') == result_same_s
 
 
 def test_diff_json_same_json():
-    assert generate_diff(file1j, file1j, json_formatter.format) == result_same_j
+    assert generate_diff(file1j, file1j, 'json') == result_same_j
 
 
 def test_diff_json_same_plain():
-    assert generate_diff(file1j, file1j, plain.format) == ''
+    assert generate_diff(file1j, file1j, 'plain') == ''
 
 
 def test_diff_yaml_stylish():
-    assert generate_diff(file1y, file2y, stylish.format) == result_s
+    assert generate_diff(file1y, file2y, 'stylish') == result_s
 
 
 def test_diff_yaml_plain():
-    assert generate_diff(file1y, file2y, plain.format) == result_p
+    assert generate_diff(file1y, file2y, 'plain') == result_p
 
 
 def test_diff_yaml_same_stylish():
-    assert generate_diff(file1y, file1y, stylish.format) == result_same_s
+    assert generate_diff(file1y, file1y, 'stylish') == result_same_s
 
 
 def test_diff_yaml_same_plain():
-    assert generate_diff(file1y, file1y, plain.format) == ''
+    assert generate_diff(file1y, file1y, 'plain') == ''
 
 
 def test_diff_yaml_json():
-    assert generate_diff(file1y, file2y, json_formatter.format) == result_j
+    assert generate_diff(file1y, file2y, 'json') == result_j
 
 
 def test_diff_yaml_same_json():
-    assert generate_diff(file1y, file1y, json_formatter.format) == result_same_j
+    assert generate_diff(file1y, file1y, 'json') == result_same_j
