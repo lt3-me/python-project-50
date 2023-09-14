@@ -22,7 +22,7 @@ Compares two configuration files and shows a difference.
 
 **How to use:**
 
-*$ gendiff (-f format_name) first_file second_file*
+`$ gendiff (-f format_name) first_file second_file`
 
 **Available output formats**: stylish, plain, json 
 
