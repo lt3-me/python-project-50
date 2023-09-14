@@ -1,4 +1,4 @@
-from gendiff.gendiff import generate_diff
+from gendiff import generate_diff
 from os import path
 
 file1j = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
