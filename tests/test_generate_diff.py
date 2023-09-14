@@ -27,51 +27,25 @@ with open(diff_same_result_file_stylish, "r") as f:
     result_same_s = f.read()
 with open(diff_same_result_file_json, "r") as f:
     result_same_j = f.read()
+result_same_p = ''
 
 
-def test_diff_json_stylish():
+def test_diff_stylish():
     assert generate_diff(file1j, file2j, 'stylish') == result_s
-
-
-def test_diff_json_plain():
-    assert generate_diff(file1j, file2j, 'plain') == result_p
-
-
-def test_diff_json_json():
-    assert generate_diff(file1j, file2j, 'json') == result_j
-
-
-def test_diff_json_same_stylish():
-    assert generate_diff(file1j, file1j, 'stylish') == result_same_s
-
-
-def test_diff_json_same_json():
-    assert generate_diff(file1j, file1j, 'json') == result_same_j
-
-
-def test_diff_json_same_plain():
-    assert generate_diff(file1j, file1j, 'plain') == ''
-
-
-def test_diff_yaml_stylish():
     assert generate_diff(file1y, file2y, 'stylish') == result_s
-
-
-def test_diff_yaml_plain():
-    assert generate_diff(file1y, file2y, 'plain') == result_p
-
-
-def test_diff_yaml_same_stylish():
+    assert generate_diff(file1j, file1j, 'stylish') == result_same_s
     assert generate_diff(file1y, file1y, 'stylish') == result_same_s
 
 
-def test_diff_yaml_same_plain():
-    assert generate_diff(file1y, file1y, 'plain') == ''
+def test_diff_plain():
+    assert generate_diff(file1j, file2j, 'plain') == result_p
+    assert generate_diff(file1y, file2y, 'plain') == result_p
+    assert generate_diff(file1j, file1j, 'plain') == result_same_p
+    assert generate_diff(file1y, file1y, 'plain') == result_same_p
 
 
-def test_diff_yaml_json():
+def test_diff_json():
+    assert generate_diff(file1j, file2j, 'json') == result_j
     assert generate_diff(file1y, file2y, 'json') == result_j
-
-
-def test_diff_yaml_same_json():
+    assert generate_diff(file1j, file1j, 'json') == result_same_j
     assert generate_diff(file1y, file1y, 'json') == result_same_j
