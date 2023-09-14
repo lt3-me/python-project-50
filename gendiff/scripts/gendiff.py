@@ -1,4 +1,4 @@
-from gendiff import generate_diff
+from gendiff.gendiff import generate_diff
 from gendiff.console import get_arguments_from_input
 
 
