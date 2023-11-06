@@ -1,5 +1,5 @@
-from gendiff.parsing import get_dict_from_file
-from gendiff.comparing import get_difference
+from gendiff.parser import get_dict_from_file
+from gendiff.comparer import get_difference
 from gendiff.formatters import get_format_function_from_str
 
 
