@@ -23,10 +23,6 @@ diff_same_result_file_json = get_fixture_filepath(
     'test_same_result_json.txt')
 
 
-styles = ('stylish', 'plain', 'json')
-test_inputs = [(file1j, file2j), (file1y, file2y)]
-
-
 def get_results(style):
     if style == 'stylish':
         with open(diff_result_file_stylish, "r") as f:
@@ -45,6 +41,10 @@ def get_results(style):
     else:
         raise Exception('Wrong formatting style')
     return result, result_same
+
+
+styles = ('stylish', 'plain', 'json')
+test_inputs = [(file1j, file2j), (file1y, file2y)]
 
 
 @pytest.mark.parametrize(
