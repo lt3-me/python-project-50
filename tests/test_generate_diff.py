@@ -1,51 +1,56 @@
 from gendiff import generate_diff
+import pytest
 from os import path
 
-file1j = path.join(path.dirname(__file__), 'fixtures', 'file1.json')
-file2j = path.join(path.dirname(__file__), 'fixtures', 'file2.json')
-file1y = path.join(path.dirname(__file__), 'fixtures', 'file1.yaml')
-file2y = path.join(path.dirname(__file__), 'fixtures', 'file2.yml')
 
-diff_result_file_stylish = path.join(path.dirname(__file__), 'fixtures',
-                                     'test_diff_result_stylish.txt')
-diff_same_result_file_stylish = path.join(path.dirname(__file__), 'fixtures',
-                                          'test_same_result_stylish.txt')
-diff_result_file_plain = path.join(path.dirname(__file__), 'fixtures',
-                                   'test_diff_result_plain.txt')
-diff_result_file_json = path.join(path.dirname(__file__), 'fixtures',
-                                  'test_diff_result_json.txt')
-diff_same_result_file_json = path.join(path.dirname(__file__), 'fixtures',
-                                       'test_same_result_json.txt')
-
-with open(diff_result_file_stylish, "r") as f:
-    result_s = f.read()
-with open(diff_result_file_plain, "r") as f:
-    result_p = f.read()
-with open(diff_result_file_json, "r") as f:
-    result_j = f.read()
-with open(diff_same_result_file_stylish, "r") as f:
-    result_same_s = f.read()
-with open(diff_same_result_file_json, "r") as f:
-    result_same_j = f.read()
-result_same_p = ''
+def get_fixture_filepath(filename):
+    return path.join(path.dirname(__file__), 'fixtures', filename)
 
 
-def test_diff_stylish():
-    assert generate_diff(file1j, file2j, 'stylish') == result_s
-    assert generate_diff(file1y, file2y, 'stylish') == result_s
-    assert generate_diff(file1j, file1j, 'stylish') == result_same_s
-    assert generate_diff(file1y, file1y, 'stylish') == result_same_s
+file1j = get_fixture_filepath('file1.json')
+file2j = get_fixture_filepath('file2.json')
+file1y = get_fixture_filepath('file1.yaml')
+file2y = get_fixture_filepath('file2.yml')
+diff_result_file_stylish = get_fixture_filepath(
+    'test_diff_result_stylish.txt')
+diff_same_result_file_stylish = get_fixture_filepath(
+    'test_same_result_stylish.txt')
+diff_result_file_plain = get_fixture_filepath(
+    'test_diff_result_plain.txt')
+diff_result_file_json = get_fixture_filepath(
+    'test_diff_result_json.txt')
+diff_same_result_file_json = get_fixture_filepath(
+    'test_same_result_json.txt')
 
 
-def test_diff_plain():
-    assert generate_diff(file1j, file2j, 'plain') == result_p
-    assert generate_diff(file1y, file2y, 'plain') == result_p
-    assert generate_diff(file1j, file1j, 'plain') == result_same_p
-    assert generate_diff(file1y, file1y, 'plain') == result_same_p
+styles = ('stylish', 'plain', 'json')
+test_inputs = [(file1j, file2j), (file1y, file2y)]
 
 
-def test_diff_json():
-    assert generate_diff(file1j, file2j, 'json') == result_j
-    assert generate_diff(file1y, file2y, 'json') == result_j
-    assert generate_diff(file1j, file1j, 'json') == result_same_j
-    assert generate_diff(file1y, file1y, 'json') == result_same_j
+def get_results(style):
+    if style == 'stylish':
+        with open(diff_result_file_stylish, "r") as f:
+            result = f.read()
+        with open(diff_same_result_file_stylish, "r") as f:
+            result_same = f.read()
+    elif style == 'plain':
+        with open(diff_result_file_plain, "r") as f:
+            result = f.read()
+        result_same = ''
+    elif style == 'json':
+        with open(diff_result_file_json, "r") as f:
+            result = f.read()
+        with open(diff_same_result_file_json, "r") as f:
+            result_same = f.read()
+    else:
+        raise Exception('Wrong formatting style')
+    return result, result_same
+
+
+@pytest.mark.parametrize(
+        "input1, input2, style",
+        [(i1, i2, style) for i1, i2 in test_inputs for style in styles])
+def test_diff(input1, input2, style):
+    expected, expected_same = get_results(style)
+    assert generate_diff(input1, input2, style) == expected
+    assert generate_diff(input1, input1, style) == expected_same
