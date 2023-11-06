@@ -10,7 +10,7 @@ def get_dict_from_file(file_path):
 
 def parse_file(file, format):
     match format:
-        case 'json': open_func = json.load
-        case 'yaml' | 'yml': open_func = yaml.safe_load
+        case 'json': content = json.load(open(file))
+        case 'yaml' | 'yml': content = yaml.safe_load(open(file))
         case _: raise Exception('Unsupported file format')
-    return open_func(open(file))
+    return content
