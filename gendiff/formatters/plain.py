@@ -8,12 +8,13 @@ def format_value(value):
 
 
 def format(diff):
-    strings = []
-    output = ''.join(_format(diff, strings, '')).strip()
+    output = ''.join(_format(diff, '')).strip()
     return output
 
 
-def _format(diff, strings, path):
+def _format(diff, path):
+    strings = []
+
     for key in diff:
         if diff[key].get('children') is None:
             match diff[key].get('status'):
@@ -34,5 +35,6 @@ Property '{path}{key}' was updated. From {value} to {value_new}\n")
                 case _:
                     raise Exception('Diff formatting error')
         else:
-            _format(diff[key].get('children'), strings, f'{path}{key}.')
+            strings.extend(
+                _format(diff[key].get('children'), f'{path}{key}.'))
     return strings
