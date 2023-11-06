@@ -1,9 +1,14 @@
 def to_str(value):
-    value = f"'{value}'" if isinstance(value, str) else value
-    value = 'true' if value is True else value
-    value = 'false' if value is False else value
-    value = 'null' if value is None else value
-    value = '[complex value]' if isinstance(value, dict) else value
+    if isinstance(value, str):
+        return f"'{value}'"
+    if value is True:
+        return 'true'
+    if value is False:
+        return 'false'
+    if value is None:
+        return 'null'
+    if isinstance(value, dict):
+        return '[complex value]'
     return value
 
 
