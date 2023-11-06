@@ -15,7 +15,7 @@ def get_difference(file1, file2):
         elif node2 is object:
             diff[key] = {'status': 'removed', 'value': node1}
         elif isinstance(node1, dict) and isinstance(node2, dict):
-            diff[key] = {'status': 'updated',
+            diff[key] = {'status': 'nested',
                          'children': get_difference(node1, node2)}
         else:
             diff[key] = {'status': 'updated',
