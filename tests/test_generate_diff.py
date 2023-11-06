@@ -48,8 +48,8 @@ test_inputs = [(file1j, file2j), (file1y, file2y)]
 
 
 @pytest.mark.parametrize(
-        "input1, input2, style",
-        [(i1, i2, style) for i1, i2 in test_inputs for style in styles])
+    "input1, input2, style",
+    [(i1, i2, style) for i1, i2 in test_inputs for style in styles])
 def test_diff(input1, input2, style):
     expected, expected_same = get_results(style)
     assert generate_diff(input1, input2, style) == expected
