@@ -1,15 +1,20 @@
 def to_str(value):
     if isinstance(value, str):
         return f"'{value}'"
-    if value is True:
-        return 'true'
-    if value is False:
-        return 'false'
+    if isinstance(value, bool):
+        return get_str_from_bool(value)
     if value is None:
         return 'null'
     if isinstance(value, dict):
         return '[complex value]'
     return value
+
+
+def get_str_from_bool(value):
+    if value is True:
+        return 'true'
+    else:
+        return 'false'
 
 
 def format(diff):
