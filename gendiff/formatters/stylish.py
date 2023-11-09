@@ -1,5 +1,5 @@
-INDENTATION = 2
-NEXT_LAYER_INDENT = 4
+SHORT_INDENT = 2
+LONG_INDENT = 4
 
 
 def to_str(value):
@@ -20,13 +20,13 @@ def format_single(key, value, prefix, indent):
 def format_nested(parent, dict_, prefix, indent):
     output = ''
     output += (f"{' ' * indent}{prefix} {parent}: {{\n")
-    indent += NEXT_LAYER_INDENT
+    indent += LONG_INDENT
     for key in dict_:
         if isinstance(dict_[key], dict):
             output += format_nested(key, dict_[key], ' ', indent)
         else:
             output += format_single(key, dict_[key], ' ', indent)
-    indent -= NEXT_LAYER_INDENT
+    indent -= LONG_INDENT
     output += (f"{' ' * indent}  }}\n")
     return output
 
@@ -39,7 +39,7 @@ def format_key_value(key, value, prefix, indent):
 
 
 def format(diff):
-    output = '{\n' + ''.join(_format(diff, INDENTATION)) + '}'
+    output = '{\n' + ''.join(_format(diff, SHORT_INDENT)) + '}'
     return output
 
 
@@ -69,6 +69,6 @@ def _format(diff, indent):
         else:
             strings.append(f"{' ' * indent}  {key}: {{\n")
             strings.extend(_format(diff[key].get('children'),
-                           indent + NEXT_LAYER_INDENT))
+                           indent + LONG_INDENT))
             strings.append(f"{' ' * indent}  }}\n")
     return strings
