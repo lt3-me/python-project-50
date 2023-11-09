@@ -1,23 +1,23 @@
-def get_difference(file1, file2):
+def get_difference(dict1, dict2):
     diff = {}
-    keys_set1 = set(file1.keys())
-    keys_set2 = set(file2.keys())
+    keys_set1 = set(dict1.keys())
+    keys_set2 = set(dict2.keys())
 
     keys_added = keys_set2 - keys_set1
     keys_removed = keys_set1 - keys_set2
     keys_in_both_sets = keys_set1.intersection(keys_set2)
 
     for key in keys_added:
-        node = file2.get(key, object)
+        node = dict2.get(key, object)
         diff[key] = {'status': 'added', 'value': node}
 
     for key in keys_removed:
-        node = file1.get(key, object)
+        node = dict1.get(key, object)
         diff[key] = {'status': 'removed', 'value': node}
 
     for key in keys_in_both_sets:
-        node1 = file1.get(key, object)
-        node2 = file2.get(key, object)
+        node1 = dict1.get(key, object)
+        node2 = dict2.get(key, object)
 
         if node1 == node2:
             diff[key] = {'status': 'unchanged', 'value': node1}
