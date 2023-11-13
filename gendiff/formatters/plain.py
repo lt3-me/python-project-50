@@ -23,7 +23,7 @@ def format(diff):
 
 
 def _format(diff, path):
-    strings = []
+    lines = []
 
     for key in diff:
         if diff[key].get('children') is None:
@@ -32,19 +32,19 @@ def _format(diff, path):
                     pass
                 case 'added':
                     value = to_str(diff[key].get('value'))
-                    strings.append(f"\
+                    lines.append(f"\
 Property '{path}{key}' was added with value: {value}\n")
                 case 'removed':
-                    strings.append(f"\
+                    lines.append(f"\
 Property '{path}{key}' was removed\n")
                 case 'updated':
                     value = to_str(diff[key].get('old_value'))
                     value_new = to_str(diff[key].get('value'))
-                    strings.append(f"\
+                    lines.append(f"\
 Property '{path}{key}' was updated. From {value} to {value_new}\n")
                 case _:
                     raise Exception('Diff formatting error')
         else:
-            strings.extend(
+            lines.extend(
                 _format(diff[key].get('children'), f'{path}{key}.'))
-    return strings
+    return lines

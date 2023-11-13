@@ -33,30 +33,30 @@ def format(diff):
 
 
 def _format(diff, indent):
-    strings = []
+    lines = []
 
     for key in diff:
         if diff[key].get('children') is None:
             match diff[key].get('status'):
                 case 'added':
-                    strings.append(to_str(key, diff[key].get('value'),
-                                          '+', indent))
+                    lines.append(to_str(key, diff[key].get('value'),
+                                        '+', indent))
                 case 'removed':
-                    strings.append(to_str(key, diff[key].get('value'),
-                                          '-', indent))
+                    lines.append(to_str(key, diff[key].get('value'),
+                                        '-', indent))
                 case 'unchanged':
-                    strings.append(to_str(key, diff[key].get('value'),
-                                          ' ', indent))
+                    lines.append(to_str(key, diff[key].get('value'),
+                                        ' ', indent))
                 case 'updated':
-                    strings.append(to_str(key, diff[key].get('old_value'),
-                                          '-', indent))
-                    strings.append(to_str(key, diff[key].get('value'),
-                                          '+', indent))
+                    lines.append(to_str(key, diff[key].get('old_value'),
+                                        '-', indent))
+                    lines.append(to_str(key, diff[key].get('value'),
+                                        '+', indent))
                 case _:
                     raise Exception('Diff formatting error')
         else:
-            strings.append(f"{' ' * indent}  {key}: {{\n")
-            strings.extend(_format(diff[key].get('children'),
-                           indent + LONG_INDENT))
-            strings.append(f"{' ' * indent}  }}\n")
-    return strings
+            lines.append(f"{' ' * indent}  {key}: {{\n")
+            lines.extend(_format(diff[key].get('children'),
+                         indent + LONG_INDENT))
+            lines.append(f"{' ' * indent}  }}\n")
+    return lines
