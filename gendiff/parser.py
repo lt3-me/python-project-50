@@ -1,9 +1,10 @@
 import json
 import yaml
+import os
 
 
 def get_dict_from_file(file_path):
-    format = file_path.split('.')[-1]
+    format = os.path.split('.')[-1]
     dict_ = parse_content(open(file_path), format)
     return dict_
 
