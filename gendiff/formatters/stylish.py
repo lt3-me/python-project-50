@@ -2,29 +2,21 @@ SHORT_INDENT = 2
 LONG_INDENT = 4
 
 
-def format_single(key, value, prefix, indent):
-    return f"{' ' * indent}{prefix} {key}: {value}\n"
-
-
-def format_nested(parent, dict_, prefix, indent):
-    output = ''
-    output += (f"{' ' * indent}{prefix} {parent}: {{\n")
-    indent += LONG_INDENT
-    for key in dict_:
-        output += to_str(key, dict_[key], ' ', indent)
-    indent -= LONG_INDENT
-    output += (f"{' ' * indent}  }}\n")
-    return output
-
-
 def to_str(key, value, prefix, indent):
     if isinstance(value, dict):
-        return format_nested(key, value, prefix, indent)
+        output = ''
+        output += (f"{' ' * indent}{prefix} {key}: {{\n")
+        indent += LONG_INDENT
+        for key in value:
+            output += to_str(key, value[key], ' ', indent)
+        indent -= LONG_INDENT
+        output += (f"{' ' * indent}  }}\n")
+        return output
     if isinstance(value, bool):
         value = 'true' if value else 'false'
     if value is None:
         value = 'null'
-    return format_single(key, value, prefix, indent)
+    return f"{' ' * indent}{prefix} {key}: {value}\n"
 
 
 def format(diff):
