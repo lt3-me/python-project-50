@@ -20,8 +20,7 @@ def to_str(key, value, prefix, indent):
 
 
 def format(diff):
-    output = '{\n' + ''.join(_format(diff, SHORT_INDENT)) + '}'
-    return output
+    return _format(diff, SHORT_INDENT)
 
 
 def _format(diff, indent):
@@ -51,4 +50,7 @@ def _format(diff, indent):
             lines.extend(_format(diff[key].get('children'),
                          indent + LONG_INDENT))
             lines.append(f"{' ' * indent}  }}\n")
-    return lines
+    if indent == SHORT_INDENT:
+        return '{\n' + ''.join(lines) + '}'
+    else:
+        return lines
