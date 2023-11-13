@@ -2,7 +2,7 @@ def to_str(value):
     if isinstance(value, str):
         return f"'{value}'"
     if isinstance(value, bool):
-        return get_str_from_bool(value)
+        return str(value).lower()
     if value is None:
         return 'null'
     if isinstance(value, dict):
