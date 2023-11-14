@@ -13,7 +13,7 @@ def to_str(key, value, prefix, indent):
         output.append(f"{' ' * indent}  }}\n")
         return ''.join(output)
     if isinstance(value, bool):
-        return str(value).lower()
+        value = str(value).lower()
     if value is None:
         value = 'null'
     return f"{' ' * indent}{prefix} {key}: {value}\n"
