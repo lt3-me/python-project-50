@@ -10,13 +10,6 @@ def to_str(value):
     return value
 
 
-def get_str_from_bool(value):
-    if value is True:
-        return 'true'
-    else:
-        return 'false'
-
-
 def format(diff):
     output = ''.join(_format(diff, '')).strip()
     return output
