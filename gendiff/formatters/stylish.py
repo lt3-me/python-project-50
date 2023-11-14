@@ -4,14 +4,14 @@ LONG_INDENT = 4
 
 def to_str(key, value, prefix, indent):
     if isinstance(value, dict):
-        output = ''
-        output += (f"{' ' * indent}{prefix} {key}: {{\n")
+        output = []
+        output.append(f"{' ' * indent}{prefix} {key}: {{\n")
         indent += LONG_INDENT
         for key in value:
-            output += to_str(key, value[key], ' ', indent)
+            output.append(to_str(key, value[key], ' ', indent))
         indent -= LONG_INDENT
-        output += (f"{' ' * indent}  }}\n")
-        return output
+        output.append(f"{' ' * indent}  }}\n")
+        return ''.join(output)
     if isinstance(value, bool):
         value = 'true' if value else 'false'
     if value is None:
