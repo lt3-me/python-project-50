@@ -33,4 +33,4 @@ def test_diff(input1, input2, expected_filename, style):
     file2 = get_fixture_filepath(input2)
     with open(get_fixture_filepath(expected_filename), "r") as f:
         expected = f.read()
-    assert generate_diff(file1, file2, style) == expected
+        assert generate_diff(file1, file2, style) == expected
