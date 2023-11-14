@@ -27,29 +27,28 @@ def _format(diff, indent):
     lines = []
 
     for key in diff:
-        if diff[key].get('children') is None:
-            match diff[key].get('status'):
-                case 'added':
-                    lines.append(to_str(key, diff[key].get('value'),
-                                        '+', indent))
-                case 'removed':
-                    lines.append(to_str(key, diff[key].get('value'),
-                                        '-', indent))
-                case 'unchanged':
-                    lines.append(to_str(key, diff[key].get('value'),
-                                        ' ', indent))
-                case 'updated':
-                    lines.append(to_str(key, diff[key].get('old_value'),
-                                        '-', indent))
-                    lines.append(to_str(key, diff[key].get('value'),
-                                        '+', indent))
-                case _:
-                    raise Exception('Diff formatting error')
-        else:
-            lines.append(f"{' ' * indent}  {key}: {{\n")
-            lines.extend(_format(diff[key].get('children'),
-                         indent + LONG_INDENT))
-            lines.append(f"{' ' * indent}  }}\n")
+        match diff[key].get('status'):
+            case 'added':
+                lines.append(to_str(key, diff[key].get('value'),
+                                    '+', indent))
+            case 'removed':
+                lines.append(to_str(key, diff[key].get('value'),
+                                    '-', indent))
+            case 'unchanged':
+                lines.append(to_str(key, diff[key].get('value'),
+                                    ' ', indent))
+            case 'updated':
+                lines.append(to_str(key, diff[key].get('old_value'),
+                                    '-', indent))
+                lines.append(to_str(key, diff[key].get('value'),
+                                    '+', indent))
+            case 'nested':
+                lines.append(f"{' ' * indent}  {key}: {{\n")
+                lines.extend(_format(diff[key].get('children'),
+                             indent + LONG_INDENT))
+                lines.append(f"{' ' * indent}  }}\n")
+            case _:
+                raise Exception('Diff formatting error')
     if indent == SHORT_INDENT:
         return '{\n' + ''.join(lines) + '}'
     else:
